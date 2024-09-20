@@ -6,10 +6,9 @@ import com.scaler.productservice.exception.NotValidCategoryException;
 import com.scaler.productservice.exception.ProductNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
-@org.springframework.web.bind.annotation.RestControllerAdvice
+@org.springframework.web.bind.annotation.ControllerAdvice
 public class ControllerAdvice {
 
     @ExceptionHandler(Exception.class)
@@ -27,11 +26,10 @@ public class ControllerAdvice {
     }
 
     @ExceptionHandler(NotValidCategoryException.class)
+    public ResponseEntity<ErrorDTO> handleNotValidCategoryException(NotValidCategoryException ex){
+        ErrorDTO errorDTO = new ErrorDTO();
+        errorDTO.setMessage(ex.getMessage());
 
-        public ResponseEntity<ErrorDTO> handleNotValidCategoryException(NotValidCategoryException ex){
-            ErrorDTO errorDTO = new ErrorDTO();
-            errorDTO.setMessage(ex.getMessage());
-            return new ResponseEntity<>(errorDTO, HttpStatus.NOT_FOUND);
-        }
+        return new ResponseEntity<>(errorDTO, HttpStatus.NOT_FOUND);
     }
 }
