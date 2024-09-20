@@ -31,7 +31,7 @@ public class FakeStoreProductService implements ProductService {
         FakeStoreProductsDTO fakeStoreProduct = fakeStoreProductsDTOResponse.getBody();
 
         if (fakeStoreProduct != null) {
-            throw new ProductNotFoundException("Product with id " + productId + " not found");
+            throw new ProductNotFoundException(" Invalid Product ID");
         }
         return fakeStoreProduct.toProduct();
     }
@@ -122,7 +122,7 @@ public class FakeStoreProductService implements ProductService {
     }
 
     @Override
-    public List<Product> getAllProductsCategoryWise(String category) throws NotValidCategoryException {
+    public List<Product> getAllProductsCategoryWise(String category) throws NotValidCategoryException{
         FakeStoreProductsDTO[] response = restTemplate.getForObject(
                 "https://fakestoreapi.com/products/category/" + category,
                 FakeStoreProductsDTO[].class
