@@ -1,5 +1,6 @@
 package com.scaler.productservice.controller;
 
+import com.scaler.productservice.DTOs.CreateProductRequestDTO;
 import com.scaler.productservice.models.Product;
 import com.scaler.productservice.service.ProductService;
 import org.springframework.web.bind.annotation.*;
@@ -17,7 +18,7 @@ public class ProductController {
     // 1. Create a Product
     @PostMapping("/")
     public Product createProduct(@RequestBody CreateProductRequestDTO request) {
-
+        return productService.getSingleProduct()
     }
 
 }
